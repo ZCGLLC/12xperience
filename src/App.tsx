@@ -118,7 +118,7 @@ export default function App() {
       `Name: ${name}\nEmail: ${email}\nIntent: ${intent}\n\n${message}`
     );
     window.open(
-      `mailto:hello@12xperience.com?subject=${encodeURIComponent("12Xperience — " + intent)}&body=${body}`,
+      `mailto:house@12xperience.studio?subject=${encodeURIComponent("12Xperience — " + intent)}&body=${body}`,
       "_blank"
     );
     setSent(true);
@@ -411,7 +411,7 @@ export default function App() {
               <a href={linkedin} target="_blank" rel="noreferrer">
                 LinkedIn · 12Xperience
               </a>
-              <a href="mailto:hello@12xperience.com">hello@12xperience.com</a>
+              <a href="mailto:house@12xperience.studio">house@12xperience.studio</a>
             </div>
           </div>
           <form className="card-form" onSubmit={onSubmit} data-reveal>
