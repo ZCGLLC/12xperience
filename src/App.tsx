@@ -8,6 +8,7 @@ import {
   press,
   reuters,
 } from "./data";
+import { asset } from "./asset";
 
 const nav = [
   { id: "house", label: "The house" },
@@ -164,7 +165,7 @@ export default function App() {
       <main>
         <section id="top" className="hero" ref={heroRef}>
           <div className="hero-media">
-            <img src="/images/hero-neon-padel.jpg" alt="Guests dancing under neon light at a 12Xperience padel night in Karachi" />
+            <img src={asset("images/hero-neon-padel.jpg")} alt="Guests dancing under neon light at a 12Xperience padel night in Karachi" />
             <div className="hero-shade" />
           </div>
           <div className="hero-copy">
@@ -277,7 +278,7 @@ export default function App() {
             {experiences.map((item) => (
               <article key={item.num} className="exp-card" data-reveal>
                 <div className="exp-img">
-                  <img src={item.image} alt={item.title} />
+                  <img src={asset(item.image)} alt={item.title} />
                 </div>
                 <div className="exp-copy">
                   <span>{item.num}</span>
@@ -307,7 +308,7 @@ export default function App() {
                 data-reveal
                 onClick={() => setLightbox(i)}
               >
-                <img src={shot.src} alt={shot.title} />
+                <img src={asset(shot.src)} alt={shot.title} />
                 <span>
                   <strong>{shot.title}</strong>
                   {shot.meta}
@@ -343,7 +344,7 @@ export default function App() {
 
         <section id="brands" className="brands">
           <div className="brands-media">
-            <img src="/images/brands-activation.jpg" alt="Guests gathering around a 12Xperience brand experience" />
+            <img src={asset("images/brands-activation.jpg")} alt="Guests gathering around a 12Xperience brand experience" />
           </div>
           <div className="brands-copy" data-reveal>
             <p className="kicker">For brands</p>
@@ -423,7 +424,7 @@ export default function App() {
 
       <footer className="footer">
         <div className="footer-brand">
-          <img src="/images/logo.jpg" alt="12Xperience mark" />
+          <img src={asset("images/logo.jpg")} alt="12Xperience mark" />
           <div>
             <strong>12XPERIENCE</strong>
             <p>A social experience: music, wellness, community. Live DJ sets. Great vibes. Real connections.</p>
@@ -462,7 +463,7 @@ export default function App() {
           <button className="lb-close" aria-label="Close" onClick={() => setLightbox(null)}>
             Close
           </button>
-          <img src={lookbook[lightbox].src} alt={lookbook[lightbox].title} />
+          <img src={asset(lookbook[lightbox].src)} alt={lookbook[lightbox].title} />
           <p>
             <strong>{lookbook[lightbox].title}</strong>
             {lookbook[lightbox].meta}
