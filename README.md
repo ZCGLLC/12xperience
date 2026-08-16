@@ -1,23 +1,15 @@
 # 12Xperience
 
-Official site for **12Xperience**, Karachi’s social experiential house — music, wellness, and community without alcohol or drugs.
+Official site for **12Xperience**, Karachi’s social experiential house.
 
-## Local
-
-```bash
-npm install
-npm run dev
-```
-
-Then open the printed local URL.
+This is a static website. Open `index.html` in a browser, or serve the folder:
 
 ```bash
-npm run build
-npm run preview
+python3 -m http.server 4173
 ```
 
-## Notes
+Then visit http://127.0.0.1:4173
 
-- Primary CTA is [Instagram @12xperience](https://www.instagram.com/12xperience/).
-- The visit form keeps the placeholder address `house@12xperience.studio` on the page. It does not send mail until a real inbox is connected.
-- A static build lives in `docs/` so the site can be served as GitHub Pages (Settings → Pages → Deploy from branch → `docs/`).
+No install step is required. Images live in `images/`, styles in `css/site.css`, and light interaction in `js/site.js`.
+
+Primary contact: [Instagram @12xperience](https://www.instagram.com/12xperience/). The on-page email `house@12xperience.studio` is a placeholder.

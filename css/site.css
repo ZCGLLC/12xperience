@@ -16,7 +16,7 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-html, body, #root { min-height: 100%; }
+html, body { min-height: 100%; }
 body {
   background: var(--bg);
   color: var(--paper);
@@ -57,12 +57,16 @@ body::before {
   place-items: center;
   align-content: center;
   gap: 10px;
-  transition: transform 0.9s var(--ease), opacity 0.6s ease;
+  animation: loaderHide 0.8s ease 1.6s forwards;
 }
 .loader.is-done {
-  transform: translateY(-110%);
+  animation: none;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
+}
+@keyframes loaderHide {
+  to { opacity: 0; visibility: hidden; pointer-events: none; }
 }
 .loader-mark {
   font-family: var(--serif);
@@ -101,12 +105,11 @@ body::before {
   align-items: center;
   gap: 24px;
   padding: 18px 28px;
-  mix-blend-mode: difference;
-  transition: background 0.35s ease, backdrop-filter 0.35s ease, mix-blend-mode 0.35s ease;
+  background: linear-gradient(to bottom, rgba(8, 7, 6, 0.78), transparent);
+  transition: background 0.35s ease, backdrop-filter 0.35s ease;
 }
 .nav.is-scrolled {
-  mix-blend-mode: normal;
-  background: rgba(8, 7, 6, 0.78);
+  background: rgba(8, 7, 6, 0.92);
   backdrop-filter: blur(18px);
   border-bottom: 1px solid var(--line);
 }
@@ -115,6 +118,8 @@ body::before {
   align-items: center;
   gap: 10px;
   color: var(--paper);
+  background: none;
+  border: 0;
 }
 .brand-xii {
   font-family: var(--serif);
@@ -134,6 +139,7 @@ body::before {
   justify-content: center;
   gap: 22px;
 }
+.nav-links a,
 .nav-links button {
   font-size: 12px;
   letter-spacing: 0.16em;
@@ -141,6 +147,8 @@ body::before {
   color: rgba(244, 234, 220, 0.72);
   position: relative;
 }
+.nav-links a:hover,
+.nav-links a.is-active,
 .nav-links button.is-active { color: var(--paper); }
 .nav-links button.is-active::after {
   content: "";
@@ -732,9 +740,12 @@ blockquote cite {
   inset: 0;
   z-index: 60;
   background: rgba(8, 7, 6, 0.94);
-  display: grid;
+  display: none;
   place-items: center;
   padding: 48px 24px 72px;
+}
+.lightbox.is-open {
+  display: grid;
 }
 .lightbox img {
   max-height: 78vh;
@@ -769,11 +780,6 @@ blockquote cite {
 }
 
 [data-reveal] {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: 0.9s var(--ease);
-}
-[data-reveal].is-in {
   opacity: 1;
   transform: none;
 }
