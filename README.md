@@ -19,5 +19,5 @@ npm run preview
 ## Notes
 
 - Primary CTA is [Instagram @12xperience](https://www.instagram.com/12xperience/).
-- Press links include the Reuters feature and its international syndication.
-- Contact form opens the visitor’s mail client to the placeholder address `house@12xperience.studio`. Swap it in `src/App.tsx` when a real inbox is ready.
+- The visit form keeps the placeholder address `house@12xperience.studio` on the page. It does not send mail until a real inbox is connected.
+- A static build lives in `docs/` so the site can be served as GitHub Pages (Settings → Pages → Deploy from branch → `docs/`).

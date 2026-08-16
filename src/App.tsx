@@ -41,7 +41,6 @@ export default function App() {
   const [booting, setBooting] = useState(true);
   const [scrolled, setScrolled] = useState(false);
   const [menu, setMenu] = useState(false);
-  const [cursor, setCursor] = useState({ x: -80, y: -80, on: false });
   const [active, setActive] = useState("top");
   const [lightbox, setLightbox] = useState<number | null>(null);
   const [sent, setSent] = useState(false);
@@ -70,17 +69,10 @@ export default function App() {
   }, [booting, menu, lightbox]);
 
   useEffect(() => {
-    const onMove = (e: PointerEvent) => {
-      if (e.pointerType !== "mouse") return;
-      setCursor({ x: e.clientX, y: e.clientY, on: true });
-    };
-    const onLeave = () => setCursor((c) => ({ ...c, on: false }));
-    window.addEventListener("pointermove", onMove);
-    window.addEventListener("pointerleave", onLeave);
-    return () => {
-      window.removeEventListener("pointermove", onMove);
-      window.removeEventListener("pointerleave", onLeave);
-    };
+    const t = window.setTimeout(() => {
+      document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((n) => n.classList.add("is-in"));
+    }, 1800);
+    return () => window.clearTimeout(t);
   }, []);
 
   useEffect(() => {
@@ -108,31 +100,12 @@ export default function App() {
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    const name = String(data.get("name") || "");
-    const email = String(data.get("email") || "");
-    const intent = String(data.get("intent") || "");
-    const message = String(data.get("message") || "");
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nIntent: ${intent}\n\n${message}`
-    );
-    window.open(
-      `mailto:house@12xperience.studio?subject=${encodeURIComponent("12Xperience — " + intent)}&body=${body}`,
-      "_blank"
-    );
+    e.currentTarget.reset();
     setSent(true);
-    form.reset();
   };
 
   return (
     <>
-      <div
-        className={`cursor ${cursor.on ? "is-on" : ""}`}
-        style={{ transform: `translate(${cursor.x}px, ${cursor.y}px)` }}
-        aria-hidden
-      />
-
       <div className={`loader ${booting ? "" : "is-done"}`} aria-hidden={!booting}>
         <div className="loader-mark">XII</div>
         <p>12XPERIENCE</p>
@@ -439,7 +412,11 @@ export default function App() {
             <button className="btn gold wide" type="submit">
               {sent ? "Sent — we will find you" : "Write to the house"}
             </button>
-            <small>Opens your mail client. For the fastest reply, DM @12xperience.</small>
+            <small>
+              {sent
+                ? "Received on this page. For a real reply, DM @12xperience — the house email is a placeholder."
+                : "This uses a placeholder inbox. For a real reply, DM @12xperience."}
+            </small>
           </form>
         </section>
       </main>
