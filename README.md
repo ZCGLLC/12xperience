@@ -2,8 +2,6 @@
 
 Official site for **12Xperience**, Karachi’s social experiential house.
 
-**Site:** https://zcgllc.github.io/12xperience/
-
 This is a static website. Open `index.html` in a browser, or serve the folder:
 
 ```bash
