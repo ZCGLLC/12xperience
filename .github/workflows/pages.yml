@@ -2,7 +2,7 @@ name: Deploy GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, cursor/12xperience-website-93fc]
   workflow_dispatch:
 
 permissions:
@@ -28,6 +28,8 @@ jobs:
           cp index.html favicon.svg .nojekyll _site/
           cp -r css js images _site/
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
